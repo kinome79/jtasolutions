@@ -246,11 +246,13 @@ section {
 
 #proj-display {
     position: relative;
-    height: 400px;
+    height: 450px;
     width: 100%;
     margin-top: 0px;
     padding-top: 10%;
+    overflow: hidden;
     background-color: lightblue;
+
 }
 
 .proj-cell {
