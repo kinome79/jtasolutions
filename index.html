@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<head>
+    <title> JTA - Resume Page </title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="author" content="Jason Todd Alloway" />
+    <meta name="description" content="An information page for developer Todd Alloway to illustrate available skills, certifications, and sample projects!"/>
+    <meta name="keywords" content="Programmer, Developer, CSS, HTML, Javascript, Python, Django, React, Redux, Node.js, Alloway, Jason Alloway, Todd Alloway"/>
+    <link rel="stylesheet" href="./res-styles/styles.css" type="text/css"/>
+    <script src="https://kit.fontawesome.com/4630b01f77.js" crossorigin="anonymous"></script>
+    <script src="./res-scripts/data.js"></script>
+    <script src="./res-scripts/scripts.js"></script>
+</head>
+
+<body>
+    <header>
+        <div id="profile-container">
+            <img  id="profile-pic" src="./res-images/portrait.png"/> 
+        </div>
+        <nav id="nav-bar"> 
+            <a class='nav-button' href="#home"> <i class="fas fa-info-circle"> </i> Intro </a>
+            <a class='nav-button' href="#projects"> <i class="fas fa-project-diagram"></i> Projects </a>
+            <a class='nav-button' href="#certs"> <i class="fas fa-certificate"> </i> Certifications </a>
+            <a class='nav-button' href="#experience"> <i class="fas fa-person-digging"> </i> Experience </a>
+            <a class='nav-button' href="#contact"> <i class="fas fa-address-book"></i> Contact </a>
+        </nav>
+    </header>
+
+    <article id="main"> 
+
+        <section id="home">
+            <h1> Thanks for your interest! </h1>
+
+            <div id="name"> 
+                <div>Jason Todd Alloway </div>- <div>Columbus, Ohio </div>- <div>Hardware Engineer turned Software Developer </div>
+            </div>
+            
+            <h3> A quick Bio... </h3>
+            <p> I am always on the look out for my next challenging opportunately. Having been a hardware systems engineer for the last 15 years, 
+                I have a wide range of exposure to hardware and the software that runs on it. While it was a satisfying career, my passion for programming
+                has me searching for other opportunities to put this natural talent to good use.</p>
+
+            <p> Having initially surpassed my highschool programming instructor, I was forced to pursue programming as independent study. At 20 I had already programmed Access databases 
+                for Honda Research and Developement before attending Ohio State University. Circumstances had me joining a hardware service company which began my server career. 
+                Since then I have had my hands in thousands of systems, have performed hardware replacements in 5 different countries, and trained many fellow engineers in 
+                various system types, including living in Japan for a year to train our remote team. Now having resigned from the hardware side and spent some time familiarizing myself 
+                with current technologies, I look to develope more innovative and helpful software solutions to assist people in their business and personal endevors. </p>
+
+            <p> Please review my projects and certifications, and request a resume from the contact section. I look forward to working with you! </p>
+
+            <div id="home-footer"> <i class="fa-solid fa-arrows-down-to-line"></i> Scroll Down For More <i class="fa-solid fa-arrows-down-to-line"></i></div>
+        </section>
+
+        <section id="projects" class="dark-section">
+            <h2> Sample Projects </h2>
+            <div id="project-buttons">
+                <div id="proj-front" class="proj-button" onclick="projTypeSelect('proj-front')"> Front End </div>
+                <div id="proj-back" class="proj-button" onclick="projTypeSelect('proj-back')"> Back End </div>
+                <div id="proj-data" class="proj-button" onclick="projTypeSelect('proj-data')"> Data Analysis </div>
+                <div id="proj-other" class="proj-button" onclick="projTypeSelect('proj-other')"> Games and Others </div>
+            </div>
+            
+            <div id="proj-display"> 
+                <div id="proj-1" class="proj-cell">
+                    <img id="proj-1-img" class="proj-img" />
+                    <div id="proj-1-text" class="proj-text">
+                        sample text
+                    </div>
+                </div>
+                <div id="proj-2" class="proj-cell">
+                    <img id="proj-1-img" class="proj-img" />
+                    <div id="proj-1-text" class="proj-text">
+                        sample text
+                    </div>
+                </div>
+                <div id="proj-3" class="proj-cell">
+                    <img id="proj-1-img" class="proj-img" />
+                    <div id="proj-1-text" class="proj-text">
+                        sample text
+                    </div>
+                </div>
+                <div id="proj-4" class="proj-cell">
+                    <img id="proj-1-img" class="proj-img" />
+                    <div id="proj-1-text" class="proj-text">
+                        sample text
+                    </div>
+                </div>
+                <div id="proj-5" class="proj-cell">
+                    <img id="proj-1-img" class="proj-img" />
+                    <div id="proj-1-text" class="proj-text">
+                        sample text
+                    </div>
+                </div>
+                
+                <div id="proj-left" class="proj-scroll"><div id="left-arrow"></div></div>
+                <div id="proj-right" class="proj-scroll"><div id="right-arrow"></div></div>
+            </div>
+        </section>
+
+        <section id="proj-viewer" class="viewer" tabindex="0" onclick="closeProj()" onblur="closeProj()"> 
+        </section>
+
+        <section id="certs" class="light-section">
+            <h2> Online Certifications  <span style="font-size: 1rem">(<a onclick="certList()">View List</a>)</span></h2>
+            <div id="cert-container"> 
+                <div class="cert-div"> <img class="cert-img" src="./res-images/certifications/CS50W Course Cert.JPG" /> 
+                    <div class="cert-cover" onclick="openCert(0)"> CS50 Web Development Certification </div> </div>
+                <div class="cert-div"> <img class="cert-img" src="./res-images/certifications/Responsive Web Design Cert.JPG" /> 
+                    <div class="cert-cover" onclick="openCert(1)"> Responsive Web Design Certification </div> </div>
+                <div class="cert-div"> <img class="cert-img" src="./res-images/certifications/Front End Developement Libraries.JPG" /> 
+                    <div class="cert-cover" onclick="openCert(2)"> Front End Libraries Certification </div> </div>
+                <div class="cert-div"> <img class="cert-img" src="./res-images/certifications/JavaScript Algorithms and Data Structures.JPG" /> 
+                    <div class="cert-cover" onclick="openCert(3)"> Javascript Algorithms Certification </div> </div>
+                <div class="cert-div"> <img class="cert-img" src="./res-images/certifications/Back End Development and APIs cert.JPG" /> 
+                    <div class="cert-cover" onclick="openCert(4)"> Backend Development Certification </div> </div>
+                <div class="cert-div"> <img class="cert-img" src="./res-images/certifications/Quality Assurance Cert.JPG" /> 
+                    <div class="cert-cover" onclick="openCert(5)"> Quality Assurance Certification </div> </div>
+                <div class="cert-div"> <img class="cert-img" src="./res-images/certifications/Relational Database Cert.JPG" /> 
+                    <div class="cert-cover" onclick="openCert(6)"> Relational Database Scripting </div> </div>
+                <div class="cert-div"> <img class="cert-img" src="./res-images/certifications/Data Visualization Cert.JPG" /> 
+                    <div class="cert-cover" onclick="openCert(7)"> Data Visualization D3 Certification </div> </div>
+                <div class="cert-div"> <img class="cert-img" src="./res-images/certifications/Information Security Cert.JPG" /> 
+                    <div class="cert-cover" onclick="openCert(8)"> Information Security Certification </div> </div>
+                <div class="cert-div"> <img class="cert-img" src="./res-images/certifications/Scientific Computing with Python Cert.JPG" /> 
+                    <div class="cert-cover" onclick="openCert(9)"> Scientific Computing w/ Python </div> </div>
+                <div class="cert-div"> <img class="cert-img" src="./res-images/certifications/Data Analyst Cert.JPG" /> 
+                    <div class="cert-cover" onclick="openCert(10)"> Data Analysis w/ Python Certification </div> </div>
+                <div class="cert-div"> <img class="cert-img" src="./res-images/certifications/Machine Learning with Python Cert.JPG" /> 
+                    <div class="cert-cover" onclick="openCert(11)"> Machine Learning w/ Python </div> </div>
+            </div>
+        </section>
+
+        <section id="cert-viewer" class="viewer" tabindex="0" onclick="closeCert()" onblur="closeCert()"> 
+            <h2 id="cert-title"> Loading ... </h2>
+            <img id="cert-img" />
+            <p id="cert-desc"> Loading ... </p>
+        </section>
+
+        <section id="experience" class="dark-section">
+            <h2> Education and Work Experience </h2>
+        </section>
+
+        <section id="contact" class="light-section">
+            <h2> Contact Info </h2>
+        </section>
+    </article>
+
+    <footer class="dark-section">
+        Created By Jason Todd Alloway ©2023 - All projects and content are original works - Page created with HTML,CSS,Javascript - Icons by FontAwesome
+    </footer>
+
+</body>
