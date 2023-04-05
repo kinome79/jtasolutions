@@ -7,6 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadProjects ("proj-front");
     projTypeSelect("proj-front");
+    
+    Object.keys(projInfo).forEach (type => {
+        const spanID = type + "-qty";
+        document.getElementById(spanID).textContent = Object.keys(projInfo[type]).length;
+    })
 
 
     document.getElementById("proj-display").onmousemove = projScrollSpeed;
@@ -35,12 +40,22 @@ function listCert () {
 function loadProjects(projType) {
     let projSpacing = 100;
     let projLocation = projSpacing;
+    let projNumber = 0;
+
     document.querySelectorAll('.proj-cell').forEach( projDiv => {
         projDiv.style.left = projLocation + "px";
-        projDiv.dataset.location = projLocation;
         projLocation += projDiv.offsetWidth + projSpacing;
-        projDiv.onclick = () => {return openProj(1)};
+        loadProject(projDiv, projType, projNumber);
+        projNumber ++;
     })
+}
+
+function loadProject(theDiv, type, number) {
+    const projData = projInfo[type][number];
+    theDiv.children[0].src = projData.image;
+    theDiv.children[1].innerHTML = projData.title;
+    theDiv.dataset.project = number;
+    theDiv.onclick = () => {return openProj(type, number)};
 }
 
 function projTypeSelect(projType) {
@@ -50,6 +65,7 @@ function projTypeSelect(projType) {
     });
     document.getElementById(projType).style.backgroundColor = 'lightblue';
     document.getElementById(projType).style.color = 'darkblue';
+    document.getElementById("proj-display").dataset.type = projType;
     loadProjects(projType);
 }
 
@@ -60,7 +76,20 @@ function projScroll (e) {
         let currentLocation = parseFloat(projDiv.style.left);
         let newLocation = currentLocation + scrollSpeed;
         projDiv.style.left = newLocation + 'px';
-        
+        if (newLocation < - projDiv.offsetWidth - 75 ) {
+            let projType = document.getElementById("proj-display").dataset.type;
+            let projID = (parseInt(projDiv.dataset.project) + 5) % Object.keys(projInfo[projType]).length;
+            console.log("is project ID always 0?> Should be " + projDiv.dataset.project + 5)
+            console.log ("Moving left, swapping current out with projID="+ projID + " from project type " + projType)
+            loadProject(projDiv, projType, projID);
+            projDiv.style.left = (window.innerWidth + 75) + "px";
+        } else if (newLocation > window.innerWidth + 75 ) {
+            let projType = document.getElementById("proj-display").dataset.type;
+            let projID = (Object.keys(projInfo[projType]).length + (projDiv.dataset.project - 5)) % Object.keys(projInfo[projType]).length;
+            console.log ("Moving right, swapping current out with projID="+ projID+ " from project type " + projType)
+            loadProject(projDiv, projType, projID);
+            projDiv.style.left =  (- projDiv.offsetWidth - 75) + "px";
+        }
     })
 
     if (projScrolling) {
@@ -79,9 +108,11 @@ function projScrollSpeed (e) {
     const percent = width * .25;
 
     if (x < percent) {
-        scrollSpeed = (x - percent)/(percent/10);
+        scrollSpeed = (percent - x)/(percent/10);
+        document.getElementById("left-cover").style.opacity = scrollSpeed/15; 
     } else if (x > width - percent) {
-        scrollSpeed = (x-(width-percent))/(percent/10);
+        scrollSpeed = ((width-percent)-x)/(percent/10);
+        document.getElementById("right-cover").style.opacity = -scrollSpeed/15; 
     } else {
         scrollSpeed = 0;
     }
@@ -96,6 +127,8 @@ function projScrollStop (e) {
     if ((e.target.id == "proj-display" || (offTarget == "windowout" && e.target.id.startsWith("proj-id"))) && (offTarget == "windowout" || !e.relatedTarget.id.startsWith("proj-id"))) {
         console.log(" A stop was called by " + e.target.id)
         projScrolling = false;
+        document.getElementById("left-cover").style.opacity = 0; 
+        document.getElementById("right-cover").style.opacity = 0; 
     }
 }
 
@@ -103,8 +136,13 @@ function projScrollStop (e) {
 
 
 
-function openProj (projID) {
-    const proj = projInfo[projID];
+function openProj (projType, projID) {
+    const proj = projInfo[projType][projID];
+
+    document.getElementById("proj-title").textContent = proj.title;
+    document.getElementById("proj-frame").src = proj.link;
+    document.getElementById("proj-desc").textContent = proj.desc;
+    document.getElementById("proj-link").href = proj.link;
 
     console.log("Opening project...")
     document.getElementById("proj-viewer").style.display = "block";
