@@ -276,14 +276,16 @@ section {
     width: 85%;
 }
 
-#proj-left {
+#proj-id-left {
     top: 0;
     left: 0;
+    pointer-events: none;
 }
 
-#proj-right {
+#proj-id-right {
     top: 0;
     right: 0;
+    pointer-events: none;
 }
 
 
@@ -303,7 +305,7 @@ section {
     border-top: 100px solid transparent;
     border-bottom: 100px solid transparent;
     border-right: 50px solid rgba(100,100,100,.5);
-
+    pointer-events: none;
 }
 
 #right-arrow {
@@ -313,6 +315,7 @@ section {
     border-top: 100px solid transparent;
     border-bottom: 100px solid transparent;
     border-left: 50px solid rgba(100,100,100,.5);
+    pointer-events: none;
 }
 
 #proj-viewer {

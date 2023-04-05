@@ -1,4 +1,6 @@
 
+let projScrolling = false;
+let scrollSpeed = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Welcome to my resume page! - As well as front end design, my skills also involve scripting and back end, for a full stack engineering solution!");
@@ -7,11 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
     projTypeSelect("proj-front");
 
 
-    document.getElementById("proj-display").onmousemove = projScroll;
-    document.getElementById("proj-left").onmouseover = projScroll;
-    document.getElementById("proj-right").onmouseover = projScroll;
-    document.getElementById("proj-left").onmouseout = projScrollStop;
-    document.getElementById("proj-right").onmouseout = projScrollStop;
+    document.getElementById("proj-display").onmousemove = projScrollSpeed;
+    document.getElementById("proj-display").onmouseout = projScrollStop;
+
 })
 
 function openCert (certID) {
@@ -37,6 +37,7 @@ function loadProjects(projType) {
     let projLocation = projSpacing;
     document.querySelectorAll('.proj-cell').forEach( projDiv => {
         projDiv.style.left = projLocation + "px";
+        projDiv.dataset.location = projLocation;
         projLocation += projDiv.offsetWidth + projSpacing;
         projDiv.onclick = () => {return openProj(1)};
     })
@@ -53,19 +54,54 @@ function projTypeSelect(projType) {
 }
 
 function projScroll (e) {
-    let scrollSpeed = 5;
+    //calculate the scrolld
 
     document.querySelectorAll('.proj-cell').forEach( projDiv => {
-        let currentLocation = parseInt(projDiv.style.left);
-        let newLocation = currentLocation - scrollSpeed;
+        let currentLocation = parseFloat(projDiv.style.left);
+        let newLocation = currentLocation + scrollSpeed;
         projDiv.style.left = newLocation + 'px';
         
     })
+
+    if (projScrolling) {
+        requestAnimationFrame(projScroll);
+    }
+}
+
+function projScrollSpeed (e) {
+
+    if (!projScrolling) {
+        projScrolling = true;
+        requestAnimationFrame(projScroll)
+    }
+    const x = e.clientX;
+    const width = window.innerWidth;
+    const percent = width * .25;
+
+    if (x < percent) {
+        scrollSpeed = (x - percent)/(percent/10);
+    } else if (x > width - percent) {
+        scrollSpeed = (x-(width-percent))/(percent/10);
+    } else {
+        scrollSpeed = 0;
+    }
+ 
 }
 
 function projScrollStop (e) {
+    //stop the scroll
+    let offTarget = "";
+    try {offTarget = e.relatedTarget.id} catch {offTarget = "windowout"};
 
+    if ((e.target.id == "proj-display" || (offTarget == "windowout" && e.target.id.startsWith("proj-id"))) && (offTarget == "windowout" || !e.relatedTarget.id.startsWith("proj-id"))) {
+        console.log(" A stop was called by " + e.target.id)
+        projScrolling = false;
+    }
 }
+
+
+
+
 
 function openProj (projID) {
     const proj = projInfo[projID];
