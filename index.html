@@ -56,9 +56,9 @@
             <h2> Sample Projects </h2>
             <div id="project-buttons">
                 <div id="proj-front" class="proj-button" onclick="projTypeSelect('proj-front')"> Front End <span id="proj-front-qty" class="proj-cnt"></span> </div>
-                <div id="proj-back" class="proj-button" onclick="projTypeSelect('proj-back')"> Back End <span id="proj-back-qty" class="proj-cnt"></span> </div>
+                <div id="proj-back" class="proj-button" onclick="projTypeSelect('proj-back')"> Full / Back End <span id="proj-back-qty" class="proj-cnt"></span> </div>
                 <div id="proj-data" class="proj-button" onclick="projTypeSelect('proj-data')"> Data Analysis <span id="proj-data-qty" class="proj-cnt"></span> </div>
-                <div id="proj-other" class="proj-button" onclick="projTypeSelect('proj-other')"> Games and Others <span id="proj-other-qty" class="proj-cnt"></span> </div>
+                <div id="proj-other" class="proj-button" onclick="projTypeSelect('proj-other')"> Games and Other <span id="proj-other-qty" class="proj-cnt"></span> </div>
             </div>
             
             <div id="proj-display" data-type="0"> 
@@ -111,9 +111,9 @@
         <section id="proj-viewer" class="viewer" tabindex="0"> 
             <div id="proj-close-btn" onclick="closeProj()"> X </div>
             <h2 id="proj-title"> Loading ... </h2>
-            <iframe id="proj-frame"></iframe>
+            <object id="proj-frame"> Loading ... </object>
             <p id="proj-desc"> Loading ... </p>
-            <a id="proj-link"> - Click to open project page - </a>
+            <a target="_blank" id="proj-link"> - Click to open project page - </a>
         </section>
 
         <section id="certs" class="light-section">

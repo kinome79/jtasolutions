@@ -366,6 +366,14 @@ section {
     color:rgb(208, 242, 255);
 }
 
+#proj-viewer a {
+    color: rgb(244, 255, 92);;
+}
+
+#proj-viewer a:hover {
+    color: red;
+}
+
 #proj-close-btn {
     position: absolute;
     top: 20px;
@@ -389,6 +397,8 @@ section {
 #proj-frame {
     min-width: 80%;
     min-height: 70%;
+    background-color:rgb(208, 242, 255);
+    color: rgb(1, 1, 75);
 }
 
 /* Media Queries */
