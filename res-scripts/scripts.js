@@ -1,6 +1,7 @@
 
 let projScrolling = false;
 let scrollSpeed = 0;
+const projSpacing = 100;
 
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Welcome to my resume page! - As well as front end design, my skills also involve scripting and back end, for a full stack engineering solution!");
@@ -38,7 +39,6 @@ function listCert () {
 }
 
 function loadProjects(projType) {
-    let projSpacing = 100;
     let projLocation = projSpacing;
     let projNumber = 0;
 
@@ -52,7 +52,7 @@ function loadProjects(projType) {
 
 function loadProject(theDiv, type, number) {
     const projData = projInfo[type][number];
-    theDiv.children[0].src = projData.image;
+    theDiv.children[0].children[0].src = projData.image;
     theDiv.children[1].innerHTML = projData.title;
     theDiv.dataset.project = number;
     theDiv.onclick = () => {return openProj(type, number)};
@@ -76,19 +76,16 @@ function projScroll (e) {
         let currentLocation = parseFloat(projDiv.style.left);
         let newLocation = currentLocation + scrollSpeed;
         projDiv.style.left = newLocation + 'px';
-        if (newLocation < - projDiv.offsetWidth - 75 ) {
+        if (newLocation < - projDiv.offsetWidth - projSpacing && scrollSpeed < 0) {
             let projType = document.getElementById("proj-display").dataset.type;
             let projID = (parseInt(projDiv.dataset.project) + 5) % Object.keys(projInfo[projType]).length;
-            console.log("is project ID always 0?> Should be " + projDiv.dataset.project + 5)
-            console.log ("Moving left, swapping current out with projID="+ projID + " from project type " + projType)
             loadProject(projDiv, projType, projID);
-            projDiv.style.left = (window.innerWidth + 75) + "px";
-        } else if (newLocation > window.innerWidth + 75 ) {
+            projDiv.style.left = (newLocation + (5 * (projDiv.offsetWidth + projSpacing))) + "px";
+        } else if (newLocation > window.innerWidth + projSpacing && scrollSpeed > 0) {
             let projType = document.getElementById("proj-display").dataset.type;
             let projID = (Object.keys(projInfo[projType]).length + (projDiv.dataset.project - 5)) % Object.keys(projInfo[projType]).length;
-            console.log ("Moving right, swapping current out with projID="+ projID+ " from project type " + projType)
             loadProject(projDiv, projType, projID);
-            projDiv.style.left =  (- projDiv.offsetWidth - 75) + "px";
+            projDiv.style.left =  (newLocation - (5 * (projDiv.offsetWidth + projSpacing))) + "px";
         }
     })
 
@@ -105,13 +102,13 @@ function projScrollSpeed (e) {
     }
     const x = e.clientX;
     const width = window.innerWidth;
-    const percent = width * .25;
+    const percent = width * .33;
 
     if (x < percent) {
-        scrollSpeed = (percent - x)/(percent/10);
+        scrollSpeed = (percent - x)/(percent/15);
         document.getElementById("left-cover").style.opacity = scrollSpeed/15; 
     } else if (x > width - percent) {
-        scrollSpeed = ((width-percent)-x)/(percent/10);
+        scrollSpeed = ((width-percent)-x)/(percent/15);
         document.getElementById("right-cover").style.opacity = -scrollSpeed/15; 
     } else {
         scrollSpeed = 0;

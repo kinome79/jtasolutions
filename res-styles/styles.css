@@ -273,6 +273,7 @@ section {
     width: 20%;
     height: 80%;
     padding: 15px;
+    font-size: 1.5rem;
     background-color: blue;
     border: solid 2px darkblue;
     border-radius: 15px;
@@ -283,13 +284,23 @@ section {
 .proj-cell:hover {
     border: solid 1px blue;
     box-shadow: 3px 3px 30px 3px blue;
+    color: green;
+}
+
+.proj-img-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85%;
+    width: 100%;
 }
 
 .proj-img {
-    max-height: 85%;
+    max-height: 95%;
     max-width: 85%;
     border: solid 2px rgb(1, 1, 75);
     border-radius: 15px;
+    box-shadow: 5px 5px 15px 1px black;
 }
 
 #proj-id-left {
@@ -312,7 +323,7 @@ section {
     background-color: rgba(0,0,0,.3);
 }
 
-.blue-cover {
+.arrow-cover {
     position: absolute;
     left: 0;
     top: 0;
@@ -324,11 +335,11 @@ section {
 }
 
 #left-cover {
-    box-shadow: 5px 0 20px 10px green;
+    box-shadow: 20px 0 50px 20px green;
 }
 
 #right-cover {
-    box-shadow: -5px 0 20px 10px green;
+    box-shadow: -20px 0 50px 20px green;
 }
 #left-arrow {
     height: 0;
@@ -357,10 +368,11 @@ section {
 
 #proj-close-btn {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     height: 50px;
     width: 50px;
+    padding-top: 3px;
     font-size: 2rem;
     color: red;
     background-color: rgba(255,0,0,.3);
@@ -375,8 +387,8 @@ section {
 }
 
 #proj-frame {
-    min-width: 85%;
-    min-height: 85%;
+    min-width: 80%;
+    min-height: 70%;
 }
 
 /* Media Queries */
