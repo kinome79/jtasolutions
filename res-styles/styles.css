@@ -382,6 +382,11 @@ section {
     transition: 1s;
 }
 
+.edu-text h3 {
+    margin-top: 5px;
+}
+
+
 .edu-sect:hover {
     width: 65%;
     z-index: 10;
