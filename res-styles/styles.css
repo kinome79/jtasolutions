@@ -320,6 +320,69 @@ section {
     color:rgb(208, 242, 255);
 }
 
+#contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    font-size: 1.5rem;
+}
+
+#cont-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 10px 50px 10px 50px;
+}
+
+.cont-button {
+    height: 100px;
+    width: 25%;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+#resume-form {
+    display: none;
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    min-height: 50%;
+    padding: 20px;
+
+    background-color:rgb(1, 1, 75);
+    color:rgb(208, 242, 255);
+    border: 2px double blue;
+    border-radius: 20px;
+    box-shadow: 10px 10px 30px 2px black;
+}
+
+#resume-message {
+    display: none;
+    position: fixed;
+    top: 45%;
+    left: 25%;
+    height: 10%;
+    width: 50%;
+    padding: 15px;
+    font-size: 2rem;
+    color: green;
+    background-color: rgb(224, 248, 224);
+    border-radius: 20px;
+    box-shadow: 10px 10px 30px 2px black;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+#resume-form input {
+    padding-left: 25px;
+    margin-top: 20px;
+    width: 65%;
+    height: 45px;
+    font-size: 1.3rem;
+    border-radius: 10px;
+}
+
 /* Media Queries */
 @media (max-width: 1600px) {  
     #home {
