@@ -1,7 +1,9 @@
 
 let projScrolling = false;
 let scrollSpeed = 0;
+let projDisplayed = false;
 const projSpacing = 100;
+
 
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Welcome to my resume page! - As well as front end design, my skills also involve scripting and back end, for a full stack engineering solution!");
@@ -96,25 +98,26 @@ function projScroll (e) {
 }
 
 function projScrollSpeed (e) {
+    if (!projDisplayed) {
+        if (!projScrolling) {
+            projScrolling = true;
+            requestAnimationFrame(projScroll)
+        }
 
-    if (!projScrolling) {
-        projScrolling = true;
-        requestAnimationFrame(projScroll)
-    }
-    const x = e.clientX;
-    const width = window.innerWidth;
-    const percent = width * .33;
+        const x = e.clientX;
+        const width = window.innerWidth;
+        const percent = width * .33;
 
-    if (x < percent) {
-        scrollSpeed = (percent - x)/(percent/15);
-        document.getElementById("left-cover").style.opacity = scrollSpeed/15; 
-    } else if (x > width - percent) {
-        scrollSpeed = ((width-percent)-x)/(percent/15);
-        document.getElementById("right-cover").style.opacity = -scrollSpeed/15; 
-    } else {
-        scrollSpeed = 0;
+        if (x < percent) {
+            scrollSpeed = (percent - x)/(percent/15);
+            document.getElementById("left-cover").style.opacity = scrollSpeed/15; 
+        } else if (x > width - percent) {
+            scrollSpeed = ((width-percent)-x)/(percent/15);
+            document.getElementById("right-cover").style.opacity = -scrollSpeed/15; 
+        } else {
+            scrollSpeed = 0;
+        }
     }
- 
 }
 
 function projScrollStop (e) {
@@ -137,9 +140,12 @@ function projScrollStop (e) {
 function openProj (projType, projID) {
     const proj = projInfo[projType][projID];
 
+    projScrolling = false;
+    projDisplayed = true;
+
     document.getElementById("proj-title").textContent = proj.title;
-    document.getElementById("proj-frame").src = proj.link;
-    document.getElementById("proj-desc").textContent = proj.desc;
+    document.getElementById("proj-frame").data = proj.link;
+    document.getElementById("proj-desc").innerHTML = proj.desc;
     document.getElementById("proj-link").href = proj.link;
 
     console.log("Opening project...")
@@ -148,6 +154,8 @@ function openProj (projType, projID) {
 }
 
 function closeProj () {
+
+    projDisplayed = false;
     document.getElementById("proj-viewer").style.display = "none";
 }
 
