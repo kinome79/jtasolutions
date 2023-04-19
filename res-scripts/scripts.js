@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("proj-display").onmousemove = projScrollSpeed;
     document.getElementById("proj-display").onmouseout = projScrollStop;
 
+    document.getElementById("request-form").addEventListener("submit", requestResume)
 })
 
 function openCert (certID) {
@@ -148,4 +149,43 @@ function openProj (projType, projID) {
 
 function closeProj () {
     document.getElementById("proj-viewer").style.display = "none";
+}
+
+function showResumeForm () {
+    const viewer = document.getElementById("resume-form");
+    viewer.style.display = 'block';
+}
+
+function hideResumeForm () {
+    const viewer = document.getElementById("resume-form");
+    viewer.style.display = 'none';
+}
+
+function requestResume (e) {
+    e.preventDefault();
+    const company = document.getElementById("company").value;
+    const name = document.getElementById("cname").value;
+    const number = document.getElementById("number").value;
+    const email = document.getElementById("email").value;
+
+    console.log( company + "\n" + name+ "\n" + number+ "\n" + email) //filler for actual API submission
+    
+    const message = document.getElementById("resume-message");
+    message.style.display = 'block';
+    message.style.transition = "opacity 1s";
+    message.style.opacity = 1;
+    setTimeout(() => {
+        message.style.opacity = 0;
+        setTimeout(() => {
+            message.style.display = 'none';
+        }, 1000);
+    }, 2000);
+
+    hideResumeForm();
+
+    document.getElementById("company").value = "";
+    document.getElementById("cname").value = "";
+    document.getElementById("number").value = "";
+    document.getElementById("email").value = "";
+
 }

@@ -171,8 +171,27 @@
         </section>
 
         <section id="contact" class="light-section">
-            <h2> Contact Info </h2>
+            <h2> Contact Options </h2>
+            <div> Please reach out for more information and to discuss how we can assist each other. </div>
+            <div id="cont-buttons">
+                <a class="cont-button" href="https://www.linkedin.com/in/todd-alloway-5b339a6/" target="_blank"> <i class="fa-brands fa-linkedin"></i> Linked-In </a>
+                <a class="cont-button" onclick="showResumeForm()"> <i class="fa-solid fa-file-lines"></i> Request Resume </a>
+                <a class="cont-button" href="https://github.com/kinome79" target="_blank"> <i class="fa-brands fa-github"></i> GitHub </a>
+            </div>
+            <div id="resume-form">
+                <div id="form-message"></div>
+                <form id="request-form" method="post">
+                    <label> Company: <input id="company" name="company"/> </label> <br>
+                    <label> Contact Name: <input id="cname" name="cname"/> </label> <br>
+                    <label> Contact Number: <input id="number" name="number"/> </label> <br>
+                    <label> Email Address: <input id="email" name="email" type="email"/> </label> <br>
+                    <input type="submit"><input type="button" value="close" onclick="hideResumeForm()"> 
+                </form>
+            </div>
+            <div id="resume-message"> Request Sent Successfully! </div>
         </section>
+
+
     </article>
 
     <footer class="dark-section">
